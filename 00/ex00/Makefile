@@ -6,7 +6,7 @@
 #    By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/06 01:35:58 by bmugnol-          #+#    #+#              #
-#    Updated: 2023/07/05 15:10:20 by bmugnol-         ###   ########.fr        #
+#    Updated: 2023/07/07 16:32:55 by bmugnol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ INCLUDE		:=	$(H_INCLUDE)
 # Development flag: set dev=1 to automatically find .cpp's and .hpp's
 ifeq ($(dev), 1)
 CFLAGS		+=	-g
-SRC			:= 	$(shell find src -name '*.cpp' -type f)
+SRC			:= 	$(shell find . -name '*.cpp' -type f)
 SRC_DIR		:=	$(dir $(SRC))
 SRC			:=	$(notdir $(SRC))
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
