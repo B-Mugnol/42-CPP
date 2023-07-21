@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 14:46:22 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/21 14:49:37 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:42:13 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,13 +112,13 @@ void Account::displayStatus(void) const
 void Account::_displayTimestamp(void)
 {
 	struct tm *localTimeInfo;
-	char buffer[18];
+	char buffer[sizeof("[19920104_091532]")];
 
 	time_t now = time(NULL);
 	localTimeInfo = localtime(&now);
 
-	if (strftime(buffer, 18, "[%Y%m%d_%H%M%S]", localTimeInfo) == 0)
-		return ;
+	if (strftime(buffer, sizeof(buffer), "[%Y%m%d_%H%M%S]", localTimeInfo) == 0)
+		return;
 	std::cout << buffer;
 	return;
 }
