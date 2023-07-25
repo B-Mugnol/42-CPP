@@ -6,12 +6,12 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 16:16:05 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/21 16:50:08 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/24 16:59:58 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_H
-#define CONTACT_H
+#ifndef ZOMBIE_H
+#define ZOMBIE_H
 
 #include <string>
 #include <iostream>
