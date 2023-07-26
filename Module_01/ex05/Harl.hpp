@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:29:19 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/25 18:12:36 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:47:17 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,14 @@ class Harl
 public:
 	Harl(void);
 	~Harl(void);
-
 	void complain(std::string level);
+	static std::string const levelString[INVALID];
 
 private:
 	void debug(void);
 	void info(void);
 	void warning(void);
 	void error(void);
-
 	void invalid(void);
 };
 

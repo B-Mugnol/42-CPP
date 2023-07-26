@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 17:21:04 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/25 18:24:08 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:54:15 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int main(void)
 	complainer.complain("WARNING");
 	complainer.complain("ERROR");
 	complainer.complain("Something else");
+
 	return 0;
 }

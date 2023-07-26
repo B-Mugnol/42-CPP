@@ -6,23 +6,23 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 18:13:20 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/25 18:53:29 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/26 14:21:47 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
+
+std::string const Harl::levelString[INVALID] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 
 Harl::Harl(void) { return; }
 Harl::~Harl(void) { return; }
 
 void Harl::complain(std::string level)
 {
-	std::string levelString[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	void (Harl::*function[INVALID + 1])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error, &Harl::invalid};
 
-	void (Harl::*function[5])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error, &Harl::invalid};
-
-	int i;
-	for (i = DEBUG; level != levelString[i] && i != INVALID; i++)
+	int i = DEBUG;
+	for (; level != levelString[i] && i != INVALID; i++)
 		;
 
 	(this->*function[i])();
