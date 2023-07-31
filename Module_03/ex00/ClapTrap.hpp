@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:54:34 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/31 16:25:34 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:30:57 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ private:
 
 	void displayLackEnergyPointsMessage(std::string attemptedAction) const;
 	void displayLackHitPointsMessage(std::string attemptedAction) const;
+
+protected:
+	void setName(std::string newValue);
+	void setHitPoints(unsigned int newValue);
+	void setEnergyPoints(unsigned int newValue);
+	void setAttackDamage(unsigned int newValue);
 
 public:
 	ClapTrap(void);

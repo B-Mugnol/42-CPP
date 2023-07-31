@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:54:32 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/31 17:06:33 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/31 17:29:10 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,27 @@ std::string ClapTrap::getName(void) const { return this->_name; }
 unsigned int ClapTrap::getHitPoints(void) const { return this->_hitPoints; }
 unsigned int ClapTrap::getEnergyPoints(void) const { return this->_energyPoints; }
 unsigned int ClapTrap::getAttackDamage(void) const { return this->_attackDamage; }
+
+void ClapTrap::setName(std::string newValue)
+{
+	this->_name = newValue;
+	return;
+}
+void ClapTrap::setHitPoints(unsigned int newValue)
+{
+	this->_hitPoints = newValue;
+	return;
+}
+void ClapTrap::setEnergyPoints(unsigned int newValue)
+{
+	this->_energyPoints = newValue;
+	return;
+}
+void ClapTrap::setAttackDamage(unsigned int newValue)
+{
+	this->_attackDamage = newValue;
+	return;
+}
 
 void ClapTrap::increaseHitPoints(unsigned int amount)
 {
