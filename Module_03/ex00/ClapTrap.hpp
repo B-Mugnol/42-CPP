@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:54:34 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/31 17:30:57 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:18:49 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ private:
 	unsigned int _energyPoints;
 	unsigned int _attackDamage;
 
-	void increaseHitPoints(unsigned int amount);
-	void decreaseHitPoints(unsigned int amount);
-	void decreaseEnergyPoints(unsigned int amount);
+	void _increaseHitPoints(unsigned int amount);
+	void _decreaseHitPoints(unsigned int amount);
+	void _decreaseEnergyPoints(unsigned int amount);
 
-	void displayLackEnergyPointsMessage(std::string attemptedAction) const;
-	void displayLackHitPointsMessage(std::string attemptedAction) const;
+	void _displayLackEnergyPointsMessage(std::string attemptedAction) const;
+	void _displayLackHitPointsMessage(std::string attemptedAction) const;
 
 protected:
 	void setName(std::string newValue);

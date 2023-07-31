@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:54:32 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/31 17:29:10 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:18:49 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void ClapTrap::setAttackDamage(unsigned int newValue)
 	return;
 }
 
-void ClapTrap::increaseHitPoints(unsigned int amount)
+void ClapTrap::_increaseHitPoints(unsigned int amount)
 {
 	if (this->_hitPoints == std::numeric_limits<unsigned int>::max())
 		return;
@@ -95,7 +95,7 @@ void ClapTrap::increaseHitPoints(unsigned int amount)
 	return;
 }
 
-void ClapTrap::decreaseHitPoints(unsigned int amount)
+void ClapTrap::_decreaseHitPoints(unsigned int amount)
 {
 	if (this->_hitPoints == 0)
 		return;
@@ -107,7 +107,7 @@ void ClapTrap::decreaseHitPoints(unsigned int amount)
 	return;
 }
 
-void ClapTrap::decreaseEnergyPoints(unsigned int amount)
+void ClapTrap::_decreaseEnergyPoints(unsigned int amount)
 {
 	if (this->_energyPoints == 0)
 		return;
@@ -119,13 +119,13 @@ void ClapTrap::decreaseEnergyPoints(unsigned int amount)
 	return;
 }
 
-void ClapTrap::displayLackEnergyPointsMessage(std::string attemptedAction) const
+void ClapTrap::_displayLackEnergyPointsMessage(std::string attemptedAction) const
 {
 	std::cout << "ClapTrap '" << this->_name << "' does not have enough energy to " << attemptedAction << "." << std::endl;
 	return;
 }
 
-void ClapTrap::displayLackHitPointsMessage(std::string attemptedAction) const
+void ClapTrap::_displayLackHitPointsMessage(std::string attemptedAction) const
 {
 	std::cout << "ClapTrap '" << this->_name << "' is dead and cannot " << attemptedAction << "." << std::endl;
 	return;
@@ -134,11 +134,11 @@ void ClapTrap::displayLackHitPointsMessage(std::string attemptedAction) const
 void ClapTrap::attack(const std::string &target)
 {
 	if (this->_hitPoints == 0)
-		return this->displayLackHitPointsMessage("attack " + target);
+		return this->_displayLackHitPointsMessage("attack " + target);
 	else if (this->_energyPoints == 0)
-		return this->displayLackEnergyPointsMessage("attack " + target);
+		return this->_displayLackEnergyPointsMessage("attack " + target);
 
-	this->decreaseEnergyPoints(1);
+	this->_decreaseEnergyPoints(1);
 	std::cout << "ClapTrap '" << this->_name << "' attacks '" << target << "' for " << this->_attackDamage << " points of damage!" << std::endl;
 	return;
 }
@@ -151,7 +151,7 @@ void ClapTrap::takeDamage(unsigned int amount)
 		return;
 	}
 
-	this->decreaseHitPoints(amount);
+	this->_decreaseHitPoints(amount);
 	std::cout << "ClapTrap '" << this->_name << "' takes " << amount << " points of damage." << std::endl;
 	if (this->_hitPoints == 0)
 		std::cout << "ClapTrap '" << this->_name << "' has been destroyed!" << std::endl;
@@ -161,12 +161,12 @@ void ClapTrap::takeDamage(unsigned int amount)
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hitPoints == 0)
-		return this->displayLackHitPointsMessage("be repaired");
+		return this->_displayLackHitPointsMessage("be repaired");
 	else if (this->_energyPoints == 0)
-		return this->displayLackEnergyPointsMessage("be repaired");
+		return this->_displayLackEnergyPointsMessage("be repaired");
 
-	this->decreaseEnergyPoints(1);
-	this->increaseHitPoints(amount);
+	this->_decreaseEnergyPoints(1);
+	this->_increaseHitPoints(amount);
 	std::cout << "ClapTrap '" << this->_name << "' is repaired, recovering " << amount << " hitpoints." << std::endl;
 	return;
 }
