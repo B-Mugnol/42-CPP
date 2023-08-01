@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:54:34 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/07/31 18:28:35 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:43:47 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ public:
 	unsigned int getEnergyPoints(void) const;
 	unsigned int getAttackDamage(void) const;
 
-	void attack(const std::string &target);
+	virtual void attack(const std::string &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 };
