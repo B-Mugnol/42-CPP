@@ -6,7 +6,7 @@
 #    By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/06 01:35:58 by bmugnol-          #+#    #+#              #
-#    Updated: 2023/08/01 16:03:33 by bmugnol-         ###   ########.fr        #
+#    Updated: 2023/08/01 16:47:23 by bmugnol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ H_INCLUDE	:=	$(addprefix -I, $(HEADER_DIR))
 
 # Source
 SRC_DIR		:=	.
-SRC			:=	main.cpp	ClapTrap.cpp	FragTrap.hpp	ScavTrap.cpp
+SRC			:=	main.cpp	ClapTrap.cpp	FragTrap.cpp	ScavTrap.cpp
 
 # Object
 OBJ_DIR		:=	obj
