@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:24:26 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/01 16:00:56 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:45:25 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ FragTrap &FragTrap::operator=(FragTrap const &rhs)
 	this->setAttackDamage(rhs.getAttackDamage());
 
 	return *this;
+}
+
+std::ostream &operator<<(std::ostream &o, FragTrap const &i)
+{
+	o << "FragTrap '" << i.getName() << "' has " << i.getHitPoints() << " HP, " << i.getEnergyPoints() << " EP and does " << i.getAttackDamage() << " damage per attack.";
+	return o;
 }
 
 void FragTrap::attack(const std::string &target)

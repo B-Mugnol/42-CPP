@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:53:43 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/01 16:00:03 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:46:27 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main(void)
 		printTrap(bob);
 
 		FragTrap novoBob(bob);
+		novoBob.highFivesGuys();
 		printTrap(novoBob);
 
 		FragTrap jimmy("Jimmy");

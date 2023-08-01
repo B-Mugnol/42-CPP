@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:24:22 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/01 15:08:06 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:44:43 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ public:
 	void attack(const std::string &target);
 	void highFivesGuys(void);
 };
+
+std::ostream &operator<<(std::ostream &o, FragTrap const &i);
 
 #endif
