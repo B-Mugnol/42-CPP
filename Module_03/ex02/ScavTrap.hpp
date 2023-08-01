@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:24:22 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/01 15:00:35 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:34:52 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@ public:
 
 	void attack(const std::string &target);
 	void guardGate(void);
+	bool getIsGatekeeping(void) const;
 };
+
+std::ostream &operator<<(std::ostream &o, ScavTrap const &i);
 
 #endif

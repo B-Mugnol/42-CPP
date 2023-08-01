@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:24:26 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/01 15:01:42 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:36:02 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name), _isGatekeeping(false)
 
 ScavTrap::ScavTrap(const ScavTrap &src) : ClapTrap(src)
 {
+	this->_isGatekeeping = src.getIsGatekeeping();
 	std::cout << "('" << this->getName() << "' is of the type ScavTrap)" << std::endl;
 	return;
 }
@@ -53,9 +54,18 @@ ScavTrap &ScavTrap::operator=(ScavTrap const &rhs)
 	this->setHitPoints(rhs.getHitPoints());
 	this->setEnergyPoints(rhs.getEnergyPoints());
 	this->setAttackDamage(rhs.getAttackDamage());
+	this->_isGatekeeping = rhs.getIsGatekeeping();
 
 	return *this;
 }
+
+std::ostream &operator<<(std::ostream &o, ScavTrap const &i)
+{
+	o << "ScavTrap '" << i.getName() << "' has " << i.getHitPoints() << " HP, " << i.getEnergyPoints() << " EP and does " << i.getAttackDamage() << " damage per attack. Gatekeeping mode is " << (i.getIsGatekeeping() ? "ON" : "OFF") << ".";
+	return o;
+}
+
+bool ScavTrap::getIsGatekeeping(void) const { return this->_isGatekeeping; }
 
 void ScavTrap::attack(const std::string &target)
 {
@@ -69,7 +79,8 @@ void ScavTrap::attack(const std::string &target)
 	return;
 }
 
-void ScavTrap::guardGate(void){
+void ScavTrap::guardGate(void)
+{
 	if (this->getHitPoints() == 0)
 		return this->displayLackHitPointsMessage("enter Gatekeeper mode");
 	else if (this->getEnergyPoints() == 0)
@@ -77,11 +88,11 @@ void ScavTrap::guardGate(void){
 
 	if (this->_isGatekeeping)
 	{
-		std::cout << "ScavTrap '" << this->getName() << "' is already in Gatekeeper mode." << 	std::endl;
-		return ;
+		std::cout << "ScavTrap '" << this->getName() << "' is already in Gatekeeper mode." << std::endl;
+		return;
 	}
 	this->_isGatekeeping = true;
 	this->decreaseEnergyPoints(1);
 	std::cout << "ScavTrap '" << this->getName() << "' is now in Gatekeeper mode." << std::endl;
-	return ;
+	return;
 }

@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 14:53:43 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/01 15:10:05 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:35:33 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int main(void)
 	{
 		// Orthodox Canonical Class Form tests
 		ScavTrap bob;
+		bob.guardGate();
 		printTrap(bob);
 
 		ScavTrap novoBob(bob);
