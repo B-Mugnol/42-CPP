@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/31 17:24:26 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/01 16:45:25 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:57:52 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,18 +61,6 @@ std::ostream &operator<<(std::ostream &o, FragTrap const &i)
 {
 	o << "FragTrap '" << i.getName() << "' has " << i.getHitPoints() << " HP, " << i.getEnergyPoints() << " EP and does " << i.getAttackDamage() << " damage per attack.";
 	return o;
-}
-
-void FragTrap::attack(const std::string &target)
-{
-	if (this->getHitPoints() == 0)
-		return this->displayLackHitPointsMessage("attack " + target);
-	else if (this->getEnergyPoints() == 0)
-		return this->displayLackEnergyPointsMessage("attack " + target);
-
-	this->decreaseEnergyPoints(1);
-	std::cout << "FragTrap '" << this->getName() << "' attacks '" << target << "' for " << this->getAttackDamage() << " points of damage!" << std::endl;
-	return;
 }
 
 void FragTrap::highFivesGuys(void){
