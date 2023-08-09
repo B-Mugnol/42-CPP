@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:30:12 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/09 16:25:49 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/09 17:14:49 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,10 @@ private:
 
 	Bureaucrat &operator=(Bureaucrat const &rhs);
 
-protected:
+public:
 	static const int MIN_GRADE;
 	static const int MAX_GRADE;
 
-public:
 	Bureaucrat(const std::string, const int);
 	Bureaucrat(Bureaucrat const &src);
 	~Bureaucrat(void);
