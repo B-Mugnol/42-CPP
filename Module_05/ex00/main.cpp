@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 15:59:15 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/09 16:29:14 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/10 15:06:52 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int main(void)
 		try
 		{
 			std::cout << "Tabatata grade -42: ";
-			Bureaucrat tabatata("tabatata", 151);
+			Bureaucrat tabatata("tabatata", -42);
 		}
 		catch (const std::exception &e)
 		{
