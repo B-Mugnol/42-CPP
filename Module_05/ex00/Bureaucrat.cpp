@@ -6,31 +6,31 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:30:11 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/09 16:24:15 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/10 14:44:23 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-const int Bureaucrat::MAX_GRADE = 1;
-const int Bureaucrat::MIN_GRADE = 150;
+const int Bureaucrat::HIGHEST_GRADE = 1;
+const int Bureaucrat::LOWEST_GRADE = 150;
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Bureaucrat::Bureaucrat(void) : _name("<missing name>"), _grade(Bureaucrat::MIN_GRADE)
+Bureaucrat::Bureaucrat(void) : _name("<missing name>"), _grade(Bureaucrat::LOWEST_GRADE)
 {
 	std::cout << "Bureaucrat " + this->_name + " created with grade " << this->_grade
 			  << std::endl;
 	return;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _grade(Bureaucrat::MIN_GRADE)
+Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _grade(Bureaucrat::LOWEST_GRADE)
 {
-	if (grade < Bureaucrat::MAX_GRADE)
+	if (grade < Bureaucrat::HIGHEST_GRADE)
 		throw GradeTooHighException();
-	if (grade > Bureaucrat::MIN_GRADE)
+	if (grade > Bureaucrat::LOWEST_GRADE)
 		throw GradeTooLowException();
 	this->_grade = grade;
 	std::cout << "Bureaucrat " + this->_name + " created with grade " << this->_grade
@@ -40,9 +40,9 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _
 
 Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name), _grade(src._grade)
 {
-	if (src._grade < Bureaucrat::MAX_GRADE)
+	if (src._grade < Bureaucrat::HIGHEST_GRADE)
 		throw GradeTooHighException();
-	if (src._grade > Bureaucrat::MIN_GRADE)
+	if (src._grade > Bureaucrat::LOWEST_GRADE)
 		throw GradeTooLowException();
 	std::cout << "Bureaucrat " + this->_name + " copied with grade " << this->_grade
 			  << std::endl;
@@ -82,14 +82,14 @@ std::ostream &operator<<(std::ostream &o, Bureaucrat const &i)
 
 void Bureaucrat::incrementGrade(void)
 {
-	if (this->_grade - 1 < Bureaucrat::MAX_GRADE)
+	if (this->_grade - 1 < Bureaucrat::HIGHEST_GRADE)
 		throw GradeTooHighException();
 	this->_grade -= 1;
 }
 
 void Bureaucrat::decrementGrade(void)
 {
-	if (this->_grade + 1 > Bureaucrat::MIN_GRADE)
+	if (this->_grade + 1 > Bureaucrat::LOWEST_GRADE)
 		throw GradeTooLowException();
 	this->_grade += 1;
 }
