@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:30:12 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/10 15:28:41 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/08/10 17:08:25 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ public:
 	int getExecGrade(void) const;
 	bool getIsSigned(void) const;
 
-	void beSigned(const Bureaucrat& bureaucrat);
+	void beSigned(const Bureaucrat &bureaucrat);
 
 	// EXCEPTIONS //
 private:
