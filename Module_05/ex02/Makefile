@@ -6,7 +6,7 @@
 #    By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/06 01:35:58 by bmugnol-          #+#    #+#              #
-#    Updated: 2023/08/14 15:00:43 by bmugnol-         ###   ########.fr        #
+#    Updated: 2023/08/15 16:54:40 by bmugnol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,15 @@ NAME		:=	test
 # Headers
 HEADER_DIR	:=	.
 HEADER		:=	Bureaucrat.hpp	AForm.hpp
-HEADER		+=	RobotomyRequestForm.hpp	PresidentialPardonForm.hpp
+HEADER		+=	ShrubberyCreationForm.hpp	RobotomyRequestForm.hpp
+HEADER		+=	PresidentialPardonForm.hpp
 H_INCLUDE	:=	$(addprefix -I, $(HEADER_DIR))
 
 # Source
 SRC_DIR		:=	.
 SRC			:=	main.cpp	Bureaucrat.cpp	AForm.cpp
-SRC			+=	RobotomyRequestForm.cpp	PresidentialPardonForm.cpp
-
+SRC			+=	ShrubberyCreationForm.cpp	RobotomyRequestForm.cpp
+SRC			+=	PresidentialPardonForm.cpp
 # Object
 OBJ_DIR		:=	obj
 OBJ			:=	$(SRC:%.cpp=$(OBJ_DIR)/%.o)
