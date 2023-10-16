@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 16:12:42 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/16 16:08:42 by bmugnol-         ###   ########.fr       */
+/*   Created: 2023/10/16 15:26:04 by bmugnol-          #+#    #+#             */
+/*   Updated: 2023/10/16 15:57:34 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
-#include "Brain.hpp"
 
-class Cat : virtual public Animal
+#define NUM_IDEAS 100
+
+class Brain
 {
-private:
-	static const std::string _DEFAULT_TYPE;
-	Brain *_brain;
-
 public:
-	Cat(void);
-	Cat(Cat const &src);
-	~Cat(void);
+	Brain(void);
+	Brain(Brain const &src);
+	~Brain(void);
 
-	Cat &operator=(Cat const &rhs);
+	Brain &operator=(Brain const &rhs);
 
-	void makeSound(void) const;
+	std::string ideas[NUM_IDEAS];
 };
 
 #endif

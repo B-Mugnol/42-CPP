@@ -6,7 +6,7 @@
 #    By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/06 01:35:58 by bmugnol-          #+#    #+#              #
-#    Updated: 2023/08/02 16:59:59 by bmugnol-         ###   ########.fr        #
+#    Updated: 2023/10/16 15:26:26 by bmugnol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,14 @@ NAME		:=	test
 
 # Headers
 HEADER_DIR	:=	.
-HEADER		:=	Animal.hpp	Cat.hpp Dog.hpp	WrongAnimal.hpp	WrongCat.hpp
+HEADER		:=	Animal.hpp	Cat.hpp Dog.hpp	Brain.hpp
+HEADER		+=	WrongAnimal.hpp	WrongCat.hpp
 H_INCLUDE	:=	$(addprefix -I, $(HEADER_DIR))
 
 # Source
 SRC_DIR		:=	.
-SRC			:=	main.cpp	Animal.cpp	Cat.cpp Dog.cpp	WrongAnimal.cpp	WrongCat.cpp
+SRC			:=	main.cpp	Animal.cpp	Cat.cpp Dog.cpp	Brain.cpp
+SRC			+=	WrongAnimal.cpp	WrongCat.cpp
 
 # Object
 OBJ_DIR		:=	obj
