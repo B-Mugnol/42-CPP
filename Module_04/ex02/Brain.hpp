@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/02 15:14:01 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/02 16:48:00 by bmugnol-         ###   ########.fr       */
+/*   Created: 2023/10/16 15:26:04 by bmugnol-          #+#    #+#             */
+/*   Updated: 2023/10/16 15:57:34 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
 #include <iostream>
 #include <string>
 
-class Animal
+#define NUM_IDEAS 100
+
+class Brain
 {
-private:
-	static const std::string _DEFAULT_TYPE;
-
-protected:
-	std::string type;
-
 public:
-	Animal(void);
-	Animal(Animal const &src);
-	virtual ~Animal(void);
+	Brain(void);
+	Brain(Brain const &src);
+	~Brain(void);
 
-	std::string getType(void) const;
-	virtual void makeSound(void) const;
+	Brain &operator=(Brain const &rhs);
 
-	Animal &operator=(Animal const &rhs);
+	std::string ideas[NUM_IDEAS];
 };
 
 #endif

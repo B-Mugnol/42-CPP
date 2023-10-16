@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:14:57 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/02 17:20:13 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:42:33 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,3 @@ Animal &Animal::operator=(Animal const &rhs)
 }
 
 std::string Animal::getType(void) const { return this->type; }
-
-void Animal::makeSound(void) const
-{
-	std::cout << "You hear a generic animal noise" << std::endl;
-	return;
-}

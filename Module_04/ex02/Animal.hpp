@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:14:01 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/02 16:48:00 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:42:04 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ public:
 	virtual ~Animal(void);
 
 	std::string getType(void) const;
-	virtual void makeSound(void) const;
+	virtual void makeSound(void) const = 0;
 
 	Animal &operator=(Animal const &rhs);
 };
