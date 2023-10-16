@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:28:31 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/02 17:22:15 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:54:20 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int main(void)
 		std::cout << j->getType() << " " << std::endl;
 		std::cout << i->getType() << " " << std::endl;
 
-		i->makeSound(); // will output the cat sound!
+		i->makeSound(); // will output the WrongAnimal sound!
 		j->makeSound();
 		meta->makeSound();
 
