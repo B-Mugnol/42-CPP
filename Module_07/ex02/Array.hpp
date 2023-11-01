@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 15:28:03 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/24 17:46:27 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/11/01 14:49:10 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ public:
 
 	Array &operator=(Array const &rhs);
 	T &operator[](const unsigned int) const;
-
-private:
 };
 
 #include "Array.tpp"
