@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 15:33:52 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/25 16:18:34 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/11/06 13:41:16 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int main(void)
 		{
 			std::cout << i << ": ";
 			it = easyfind(v, 100 + i);
-			std::cout << *it << " | " << *(std::find(v.begin(), v.end(), 100 + i)) << std::endl;
+			std::cout << "[easyfind] " << *it << " | "
+					  << *(std::find(v.begin(), v.end(), 100 + i)) << " [sys find]" << std::endl;
 		}
 		catch (const std::exception &e)
 		{
