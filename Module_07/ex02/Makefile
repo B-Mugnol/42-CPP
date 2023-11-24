@@ -6,7 +6,7 @@
 #    By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/06 01:35:58 by bmugnol-          #+#    #+#              #
-#    Updated: 2023/10/24 18:15:40 by bmugnol-         ###   ########.fr        #
+#    Updated: 2023/11/24 16:07:52 by bmugnol-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 # C Compiler
 CC		:=	c++
 # Compiler flags
-CFLAGS	:=	-Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
+CFLAGS	:=	-Wall -Wextra -Werror -Wshadow -std=c++98
 # Removal tool
 RM		:=	rm -rf
 
