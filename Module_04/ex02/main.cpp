@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:28:31 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/12/09 14:39:11 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/09 16:15:24 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int main(void)
 		// Uncommenting the following won't compile:
 		// Animal bob = Animal();
 	}
-		{
+	{
 		printCyanColored("Basic test (array)");
 
 		Animal *animalArray[10];
