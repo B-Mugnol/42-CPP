@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:28:31 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/16 16:18:52 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/09 14:07:32 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,34 +40,6 @@ int main(void)
 		std::cout << "Bob = Jimmy: ";
 		bob = jimmy;
 	}
-	{
-		printCyanColored("Cat Class");
-		std::cout << "Bob: ";
-		Cat bob;
-
-		std::cout << "novoBob: ";
-		Cat novoBob(bob);
-
-		std::cout << "Jimmy: ";
-		Cat jimmy;
-
-		std::cout << "Bob = Jimmy: ";
-		bob = jimmy;
-	}
-	{
-		printCyanColored("Dog Class");
-		std::cout << "Bob: ";
-		Dog bob;
-
-		std::cout << "novoBob: ";
-		Dog novoBob(bob);
-
-		std::cout << "Jimmy: ";
-		Dog jimmy;
-
-		std::cout << "Bob = Jimmy: ";
-		bob = jimmy;
-	}
 
 	printBlueColored("Basic 42 subject tests");
 	{
@@ -78,79 +50,45 @@ int main(void)
 		delete i;
 	}
 	{
-		printCyanColored("Basic test (sound)");
-		const Animal *meta = new Animal();
-		const Animal *j = new Dog();
-		const Animal *i = new Cat();
+		printCyanColored("Basic test (array)");
 
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
+		Animal *animalArray[10];
+		for (size_t i = 0; i < 10; i++)
+		{
+			if (i % 2 == 0)
+				animalArray[i] = new Dog();
+			else
+				animalArray[i] = new Cat();
+		}
 
-		i->makeSound(); // will output the cat sound!
-		j->makeSound();
-		meta->makeSound();
-
-		delete meta;
-		delete i;
-		delete j;
+		Animal *justAnAnimal;
+		for (size_t i = 0; i < 10; i++)
+		{
+			justAnAnimal = animalArray[i];
+			delete justAnAnimal;
+		}
 	}
 	{
-		printCyanColored("'Wrong' test");
-		const WrongAnimal *meta = new WrongAnimal();
-		const Animal *j = new Dog();
-		const WrongAnimal *i = new WrongCat();
+		printCyanColored("Deep copy test (Dog)");
+		std::cout << "Bob: ";
+		Dog *bob = new Dog();
 
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
+		std::cout << "novoBob: ";
+		Dog novoBob(*bob);
 
-		i->makeSound(); // will output the cat sound!
-		j->makeSound();
-		meta->makeSound();
-
-		delete meta;
-		delete i;
-		delete j;
-	}
-	printBlueColored("Improved 42 subject tests");
-	{
-		printCyanColored("Basic test");
-		const Animal *meta = new Animal();
-		const Animal *doggo = new Dog();
-		const Animal *kitten = new Cat();
-
-		std::cout << std::setw(31) << "*meta = new Animal() — type: "
-				  << std::setw(7) << meta->getType() << " | sound: ";
-		meta->makeSound();
-		std::cout << std::setw(31) << "*doggo = new Dog() — type: "
-				  << std::setw(7) << doggo->getType() << " | sound: ";
-		doggo->makeSound();
-		std::cout << std::setw(31) << "*kitten = new Cat() — type: "
-				  << std::setw(7) << kitten->getType() << " | sound: ";
-		kitten->makeSound();
-
-		delete meta;
-		delete kitten;
-		delete doggo;
+		delete bob;
+		novoBob.makeSound();
 	}
 	{
-		printCyanColored("'Wrong' test");
-		const WrongAnimal *meta = new WrongAnimal();
-		const Animal *doggo = new Dog();
-		const WrongAnimal *kitten = new WrongCat();
+		printCyanColored("Deep copy test (Cat)");
+		std::cout << "Bob: ";
+		Cat *bob = new Cat();
 
-		std::cout << std::setw(31) << "*meta = new Animal() — type: "
-				  << std::setw(12) << meta->getType() << " | sound: ";
-		meta->makeSound();
-		std::cout << std::setw(31) << "*doggo = new Dog() — type: "
-				  << std::setw(12) << doggo->getType() << " | sound: ";
-		doggo->makeSound();
-		std::cout << std::setw(31) << "*kitten = new Cat() — type: "
-				  << std::setw(12) << kitten->getType() << " | sound: ";
-		kitten->makeSound();
+		std::cout << "novoBob: ";
+		Cat novoBob(*bob);
 
-		delete meta;
-		delete kitten;
-		delete doggo;
+		delete bob;
+		novoBob.makeSound();
 	}
 	return 0;
 }
