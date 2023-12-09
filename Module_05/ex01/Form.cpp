@@ -26,9 +26,9 @@ Form::Form(void) : _name("<missing name>"), _signGrade(Bureaucrat::HIGHEST_GRADE
 Form::Form(const std::string name, const int signGrade, const int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade), _isSigned(false)
 {
 	if (signGrade < Bureaucrat::HIGHEST_GRADE || execGrade < Bureaucrat::HIGHEST_GRADE)
-		throw GradeTooHighException();
+		throw Form::GradeTooHighException();
 	if (signGrade > Bureaucrat::LOWEST_GRADE || execGrade > Bureaucrat::LOWEST_GRADE)
-		throw GradeTooLowException();
+		throw Form::GradeTooLowException();
 
 	std::cout << "Form " + this->_name + " created with sign grade " << this->_signGrade
 			  << " and execute grade " << this->_execGrade << "." << std::endl;
