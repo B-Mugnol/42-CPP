@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:28:31 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/16 16:12:48 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/09 14:39:11 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int main(void)
 		bob = jimmy;
 	}
 
-	printBlueColored("Basic 42 subject tests");
+	printBlueColored("Basic tests");
 	{
 		printCyanColored("Basic test (leak)");
 		const Animal *j = new Dog();
@@ -77,81 +77,93 @@ int main(void)
 		delete j; // should not create a leak
 		delete i;
 	}
-	// {
-	// 	printCyanColored("Basic test (sound)");
-	// 	// const Animal *meta = new Animal();
-	// 	const Animal *j = new Dog();
-	// 	const Animal *i = new Cat();
+	{
+		printCyanColored("Abstract class test");
+		// Uncommenting the following won't compile:
+		// Animal bob = Animal();
+	}
+		{
+		printCyanColored("Basic test (array)");
 
-	// 	std::cout << j->getType() << " " << std::endl;
-	// 	std::cout << i->getType() << " " << std::endl;
+		Animal *animalArray[10];
+		for (size_t i = 0; i < 10; i++)
+		{
+			if (i % 2 == 0)
+				animalArray[i] = new Dog();
+			else
+				animalArray[i] = new Cat();
+		}
 
-	// 	i->makeSound(); // will output the cat sound!
-	// 	j->makeSound();
-	// 	// meta->makeSound();
+		Animal *justAnAnimal;
+		for (size_t i = 0; i < 10; i++)
+		{
+			justAnAnimal = animalArray[i];
+			delete justAnAnimal;
+		}
+	}
+	{
+		printCyanColored("Deep copy test (Dog)");
+		std::cout << "Bob: ";
+		Dog *bob = new Dog();
 
-	// 	// delete meta;
-	// 	delete i;
-	// 	delete j;
-	// }
-	// {
-	// 	printCyanColored("'Wrong' test");
-	// 	// const WrongAnimal *meta = new WrongAnimal();
-	// 	const Animal *j = new Dog();
-	// 	const WrongAnimal *i = new WrongCat();
+		std::cout << "novoBob: ";
+		Dog novoBob(*bob);
 
-	// 	std::cout << j->getType() << " " << std::endl;
-	// 	std::cout << i->getType() << " " << std::endl;
+		delete bob;
+		novoBob.makeSound();
+	}
+	{
+		printCyanColored("Deep copy test (Cat)");
+		std::cout << "Bob: ";
+		Cat *bob = new Cat();
 
-	// 	i->makeSound(); // will output the cat sound!
-	// 	j->makeSound();
-	// 	// meta->makeSound();
+		std::cout << "novoBob: ";
+		Cat novoBob(*bob);
 
-	// 	// delete meta;
-	// 	delete i;
-	// 	delete j;
-	// }
-	// printBlueColored("Improved 42 subject tests");
-	// {
-	// 	printCyanColored("Basic test");
-	// 	// const Animal *meta = new Animal();
-	// 	const Animal *doggo = new Dog();
-	// 	const Animal *kitten = new Cat();
+		delete bob;
+		novoBob.makeSound();
+	}
+	printBlueColored("Improved 42 subject tests");
+	{
+		printCyanColored("Basic test");
+		// const Animal *meta = new Animal();
+		const Animal *doggo = new Dog();
+		const Animal *kitten = new Cat();
 
-	// 	// std::cout << std::setw(31) << "*meta = new Animal() — type: "
-	// 	// 		  << std::setw(7) << meta->getType() << " | sound: ";
-	// 	// meta->makeSound();
-	// 	std::cout << std::setw(31) << "*doggo = new Dog() — type: "
-	// 			  << std::setw(7) << doggo->getType() << " | sound: ";
-	// 	doggo->makeSound();
-	// 	std::cout << std::setw(31) << "*kitten = new Cat() — type: "
-	// 			  << std::setw(7) << kitten->getType() << " | sound: ";
-	// 	kitten->makeSound();
+		// std::cout << std::setw(31) << "*meta = new Animal() — type: "
+		// 		  << std::setw(7) << meta->getType() << " | sound: ";
+		// meta->makeSound();
+		std::cout << std::setw(31) << "*doggo = new Dog() — type: "
+				  << std::setw(7) << doggo->getType() << " | sound: ";
+		doggo->makeSound();
+		std::cout << std::setw(31) << "*kitten = new Cat() — type: "
+				  << std::setw(7) << kitten->getType() << " | sound: ";
+		kitten->makeSound();
 
-	// 	// delete meta;
-	// 	delete kitten;
-	// 	delete doggo;
-	// }
-	// {
-	// 	printCyanColored("'Wrong' test");
-	// 	const WrongAnimal *meta = new WrongAnimal();
-	// 	const Animal *doggo = new Dog();
-	// 	const WrongAnimal *kitten = new WrongCat();
+		// delete meta;
+		delete kitten;
+		delete doggo;
+	}
+	{
+		printCyanColored("'Wrong' test");
+		const WrongAnimal *meta = new WrongAnimal();
+		const Animal *doggo = new Dog();
+		const WrongAnimal *kitten = new WrongCat();
 
-	// 	std::cout << std::setw(31) << "*meta = new Animal() — type: "
-	// 			  << std::setw(12) << meta->getType() << " | sound: ";
-	// 	meta->makeSound();
-	// 	std::cout << std::setw(31) << "*doggo = new Dog() — type: "
-	// 			  << std::setw(12) << doggo->getType() << " | sound: ";
-	// 	doggo->makeSound();
-	// 	std::cout << std::setw(31) << "*kitten = new Cat() — type: "
-	// 			  << std::setw(12) << kitten->getType() << " | sound: ";
-	// 	kitten->makeSound();
+		std::cout << std::setw(31) << "*meta = new Animal() — type: "
+				  << std::setw(12) << meta->getType() << " | sound: ";
+		meta->makeSound();
+		std::cout << std::setw(31) << "*doggo = new Dog() — type: "
+				  << std::setw(12) << doggo->getType() << " | sound: ";
+		doggo->makeSound();
+		std::cout << std::setw(31) << "*kitten = new Cat() — type: "
+				  << std::setw(12) << kitten->getType() << " | sound: ";
+		kitten->makeSound();
 
-	// 	delete meta;
-	// 	delete kitten;
-	// 	delete doggo;
-	// }
+		delete meta;
+		delete kitten;
+		delete doggo;
+	}
 	return 0;
 }
 
