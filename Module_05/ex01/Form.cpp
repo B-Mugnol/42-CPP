@@ -38,9 +38,9 @@ Form::Form(const std::string name, const int signGrade, const int execGrade) : _
 Form::Form(const Form &src) : _name(src._name), _signGrade(src._signGrade), _execGrade(src._execGrade), _isSigned(src._isSigned)
 {
 	if (src._signGrade < Bureaucrat::HIGHEST_GRADE || src._execGrade < Bureaucrat::HIGHEST_GRADE)
-		throw GradeTooHighException();
+		throw Form::GradeTooHighException();
 	if (src._signGrade > Bureaucrat::LOWEST_GRADE || src._execGrade > Bureaucrat::LOWEST_GRADE)
-		throw GradeTooLowException();
+		throw Form::GradeTooLowException();
 
 	std::cout << "Form " + this->_name + " copied with sign grade " << this->_signGrade
 			  << " and execute grade " << this->_execGrade << "." << std::endl;

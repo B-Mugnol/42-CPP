@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/09 14:30:11 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/08/10 14:44:23 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/09 17:13:09 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ Bureaucrat::Bureaucrat(void) : _name("<missing name>"), _grade(Bureaucrat::LOWES
 Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _grade(Bureaucrat::LOWEST_GRADE)
 {
 	if (grade < Bureaucrat::HIGHEST_GRADE)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (grade > Bureaucrat::LOWEST_GRADE)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	this->_grade = grade;
 	std::cout << "Bureaucrat " + this->_name + " created with grade " << this->_grade
 			  << std::endl;
@@ -41,9 +41,9 @@ Bureaucrat::Bureaucrat(const std::string name, const int grade) : _name(name), _
 Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src._name), _grade(src._grade)
 {
 	if (src._grade < Bureaucrat::HIGHEST_GRADE)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	if (src._grade > Bureaucrat::LOWEST_GRADE)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	std::cout << "Bureaucrat " + this->_name + " copied with grade " << this->_grade
 			  << std::endl;
 	return;
@@ -83,14 +83,14 @@ std::ostream &operator<<(std::ostream &o, Bureaucrat const &i)
 void Bureaucrat::incrementGrade(void)
 {
 	if (this->_grade - 1 < Bureaucrat::HIGHEST_GRADE)
-		throw GradeTooHighException();
+		throw Bureaucrat::GradeTooHighException();
 	this->_grade -= 1;
 }
 
 void Bureaucrat::decrementGrade(void)
 {
 	if (this->_grade + 1 > Bureaucrat::LOWEST_GRADE)
-		throw GradeTooLowException();
+		throw Bureaucrat::GradeTooLowException();
 	this->_grade += 1;
 }
 

@@ -26,9 +26,9 @@ AForm::AForm(void) : _name("<missing name>"), _signGrade(Bureaucrat::HIGHEST_GRA
 AForm::AForm(const std::string name, const int signGrade, const int execGrade) : _name(name), _signGrade(signGrade), _execGrade(execGrade), _isSigned(false)
 {
 	if (signGrade < Bureaucrat::HIGHEST_GRADE || execGrade < Bureaucrat::HIGHEST_GRADE)
-		throw GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	if (signGrade > Bureaucrat::LOWEST_GRADE || execGrade > Bureaucrat::LOWEST_GRADE)
-		throw GradeTooLowException();
+		throw AForm::GradeTooLowException();
 
 	std::cout << "Form " + this->_name + " created with sign grade " << this->_signGrade
 			  << " and execute grade " << this->_execGrade << "." << std::endl;
@@ -38,9 +38,9 @@ AForm::AForm(const std::string name, const int signGrade, const int execGrade) :
 AForm::AForm(const AForm &src) : _name(src._name), _signGrade(src._signGrade), _execGrade(src._execGrade), _isSigned(src._isSigned)
 {
 	if (src._signGrade < Bureaucrat::HIGHEST_GRADE || src._execGrade < Bureaucrat::HIGHEST_GRADE)
-		throw GradeTooHighException();
+		throw AForm::GradeTooHighException();
 	if (src._signGrade > Bureaucrat::LOWEST_GRADE || src._execGrade > Bureaucrat::LOWEST_GRADE)
-		throw GradeTooLowException();
+		throw AForm::GradeTooLowException();
 
 	std::cout << "Form " + this->_name + " copied with sign grade " << this->_signGrade
 			  << " and execute grade " << this->_execGrade << "." << std::endl;
