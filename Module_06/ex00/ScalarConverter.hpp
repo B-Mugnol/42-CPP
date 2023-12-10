@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:02:42 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/19 16:18:49 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/10 15:29:14 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,48 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <string>
 
 class ScalarConverter
 {
+public:
+	static void convert(const std::string &src);
+
 private:
+	static const std::string _pseudoLiterals[3];
+	static const std::string _pseudoLiteralsF[3];
+
 	static char _char;
-	static long int _int;
+	static long _int;
 	static float _float;
 	static double _double;
-	static const std::string _pseudoLiterals[6];
-	static int _type;
-	static double _rangerChecker;
+	static bool _isPseudoLiteral;
+	static bool _isPseudoLiteralF;
 
 	ScalarConverter(void);
-	ScalarConverter(ScalarConverter const &src);
+	ScalarConverter(ScalarConverter const &literal);
 	~ScalarConverter(void);
-
-	static void getType(std::string str);
-	static bool isPseudo(std::string str);
-
-	static bool isNumber(const std::string s);
-	static bool isFloat(const std::string s);
-	static bool isDouble(const std::string s);
-
-	static void setInt(std::string s);
-	static void setChar(std::string s);
-	static void setFloat(std::string s);
-	static void setDouble(std::string s);
-
-	static void printValues(void);
-	static void printInt(void);
-	static void printChar(void);
-	static void printFloat(void);
-	static void printDouble(void);
 
 	ScalarConverter &operator=(ScalarConverter const &rhs);
 
-public:
-	static void convert(std::string const str);
+	static void convertFromChar(const std::string &literal);
+	static void convertFromFloat(const std::string &literal);
+	static void convertFromInt(const std::string &literal);
+	static void convertFromDouble(const std::string &literal);
+
+	static bool isChar(const std::string &literal);
+	static bool isFloat(const std::string &literal);
+	static bool isInt(const std::string &literal);
+	static bool isDouble(const std::string &literal);
+	static bool isPseudoLiteral(const std::string &literal);
+	static bool isPseudoLiteralF(const std::string &literal);
+
+	static void printValues(const std::string &literal);
+
+	static void printChar(void);
+	static void printInt(void);
+	static void printFloat(const std::string &literal);
+	static void printDouble(const std::string &literal);
 };
 
 #endif

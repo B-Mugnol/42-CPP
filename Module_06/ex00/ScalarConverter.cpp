@@ -6,27 +6,27 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:02:43 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/19 16:43:43 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:22:07 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-#include <iostream>
-#include <cstdlib>
-#include <climits>
-#include <string>
-#include <iomanip>
+#include <limits.h>
 
+#include <cctype>
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+
+const std::string ScalarConverter::_pseudoLiterals[3] = {"-inf", "+inf", "nan"};
+const std::string ScalarConverter::_pseudoLiteralsF[3] = {"-inff", "+inff", "nanf"};
 char ScalarConverter::_char = 0;
-long int ScalarConverter::_int = 0;
+long ScalarConverter::_int = 0;
 float ScalarConverter::_float = 0;
 double ScalarConverter::_double = 0;
-int ScalarConverter::_type = -1;
-double ScalarConverter::_rangerChecker = 0;
-
-const std::string ScalarConverter::_pseudoLiterals[6] = {
-	"-inff", "-inf", "+inff", "+inf", "nanf", "nan"};
+bool ScalarConverter::_isPseudoLiteral = false;
+bool ScalarConverter::_isPseudoLiteralF = false;
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
@@ -53,7 +53,12 @@ ScalarConverter::~ScalarConverter(void) { return; }
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 {
 	if (this != &rhs)
-		return *this;
+	{
+		this->_char = rhs._char;
+		this->_int = rhs._int;
+		this->_float = rhs._float;
+		this->_double = rhs._double;
+	}
 	return *this;
 }
 
@@ -61,206 +66,198 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 ** --------------------------------- METHODS ----------------------------------
 */
 
-bool ScalarConverter::isPseudo(std::string str)
+void ScalarConverter::convert(const std::string &literal)
 {
-	for (int i = 0; i < 6; i++)
+	if (literal.empty())
 	{
-		if (_pseudoLiterals[i].compare(str) == 0)
-		{
-			_type = i;
-			return (true);
-		}
-	}
-	return (false);
-}
-
-bool ScalarConverter::isNumber(const std::string s)
-{
-	std::string::const_iterator it = s.begin();
-
-	if (*it == '-' || *it == '+')
-		it++;
-	while (it != s.end() && std::isdigit(*it))
-		++it;
-	return !s.empty() && it == s.end();
-}
-
-bool ScalarConverter::isFloat(const std::string s)
-{
-	int point = 0;
-	size_t i = 0;
-
-	if (s[0] == '-' || s[0] == '+')
-		i++;
-	while (i < s.length())
-	{
-		if (!std::isdigit(s[i]))
-		{
-			if (s[i] == '.')
-				point++;
-			else
-				return (false);
-		}
-		i++;
-	}
-	if (point == 0 || point > 1)
-		return (false);
-	return (true);
-}
-
-bool ScalarConverter::isDouble(const std::string s)
-{
-	int point = 0;
-
-	std::string::const_iterator it = s.begin();
-
-	if (s[s.length() - 1] != 'f')
-		return (false);
-	if (*it == '-' || *it == '+')
-		it++;
-	while (it != s.end() - 1)
-	{
-		if (!std::isdigit(*it))
-		{
-			if (*it == '.')
-				point++;
-			else
-				return (false);
-		}
-		++it;
-	}
-	if (point == 0 || point > 1)
-		return (false);
-	return (true);
-}
-
-void ScalarConverter::getType(std::string str)
-{
-	if (str.length() == 1 && !isdigit(str[0]))
-		setChar(str);
-	else if (ScalarConverter::isNumber(str))
-		setInt(str);
-	else if (ScalarConverter::isFloat(str))
-		setFloat(str);
-	else if (ScalarConverter::isDouble(str))
-		setDouble(str);
-	else if (ScalarConverter::isPseudo(str))
-	{
-		;
-	}
-	else
-	{
-		std::cout << "invalid arg type" << std::endl;
+		std::cout << "Invalid Argument\n";
 		return;
 	}
-	printValues();
+
+	if (isPseudoLiteral(literal))
+		_isPseudoLiteral = true;
+	else if (isPseudoLiteralF(literal))
+	{
+		_isPseudoLiteral = true;
+		_isPseudoLiteralF = true;
+	}
+	else if (isChar(literal))
+		convertFromChar(literal);
+	else if (isInt(literal))
+		convertFromInt(literal);
+	else if (isFloat(literal))
+		convertFromFloat(literal);
+	else if (isDouble(literal))
+		convertFromDouble(literal);
+	else
+	{
+		std::cout << "Invalid Argument\n";
+		return;
+	}
+
+	if (_isPseudoLiteralF)
+		printValues(literal.substr(0, literal.length() - 1));
+	else
+		printValues(literal);
+
+	_isPseudoLiteral = false;
+	_isPseudoLiteralF = false;
 }
 
-void ScalarConverter::printInt(void)
+bool ScalarConverter::isChar(const std::string &literal)
 {
-	if (_type == 0 || _type == 1)
-		std::cout << "int: -inf" << std::endl;
-	else if (_rangerChecker < INT_MIN || _rangerChecker > INT_MAX || _type >= 0)
-		std::cout << "int: Imposible" << std::endl;
-	else
-		std::cout << "int: " << _int << std::endl;
+	if (literal.length() == 1 && std::isdigit(literal[0]) == false)
+		return true;
+	return false;
+}
+
+bool ScalarConverter::isInt(const std::string &literal)
+{
+	size_t start = literal[0] == '-' || literal[0] == '+' ? 1 : 0;
+	for (size_t i = start; i < literal.length(); i++)
+	{
+		if (std::isdigit(literal[i]) == false)
+			return false;
+	}
+	return true;
+}
+
+bool ScalarConverter::isDouble(const std::string &literal)
+{
+	bool hasDot = false;
+
+	size_t start = literal[0] == '-' || literal[0] == '+' ? 1 : 0;
+	for (size_t i = start; i < literal.length(); i++)
+	{
+		if (std::isdigit(literal[i]) == false)
+		{
+			if (literal[i] == '.' && hasDot == false)
+				hasDot = true;
+			else
+				return false;
+		}
+	}
+	return hasDot;
+}
+
+bool ScalarConverter::isFloat(const std::string &literal)
+{
+	bool hasDot = false;
+
+	if (literal[literal.length() - 1] != 'f')
+		return false;
+
+	size_t start = literal[0] == '-' || literal[0] == '+' ? 1 : 0;
+	for (size_t i = start; i < literal.length() - 1; i++)
+	{
+		if (std::isdigit(literal[i]) == false)
+		{
+			if (literal[i] == '.' && hasDot == false)
+				hasDot = true;
+			else
+				return false;
+		}
+	}
+	return hasDot;
+}
+
+bool ScalarConverter::isPseudoLiteral(const std::string &literal)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		if (literal == _pseudoLiterals[i])
+			return true;
+	}
+	return false;
+}
+
+bool ScalarConverter::isPseudoLiteralF(const std::string &literal)
+{
+	for (int i = 0; i < 3; i++)
+	{
+		// if (literal == _pseudoLiteralsF[i])
+		if (_pseudoLiteralsF[i].compare(literal) == 0)
+			return true;
+	}
+	return false;
+}
+
+void ScalarConverter::convertFromChar(const std::string &literal)
+{
+	_int = static_cast<int>(literal[0]);
+	_char = static_cast<char>(_int);
+	_float = static_cast<float>(_int);
+	_double = static_cast<double>(_int);
+}
+
+void ScalarConverter::convertFromInt(const std::string &literal)
+{
+	_int = std::atoi(literal.c_str());
+	_char = static_cast<char>(_int);
+	_float = static_cast<float>(_int);
+	_double = static_cast<double>(_int);
+}
+
+void ScalarConverter::convertFromFloat(const std::string &literal)
+{
+	_float = std::strtof(literal.c_str(), NULL);
+	_char = static_cast<char>(_float);
+	_int = static_cast<int>(_float);
+	_double = static_cast<double>(_float);
+}
+
+void ScalarConverter::convertFromDouble(const std::string &literal)
+{
+	_double = std::strtod(literal.c_str(), NULL);
+	_int = static_cast<int>(_double);
+	_char = static_cast<char>(_double);
+	_float = static_cast<float>(_double);
+}
+
+void ScalarConverter::printValues(const std::string &literal)
+{
+	printChar();
+	printInt();
+	printFloat(literal);
+	printDouble(literal);
 }
 
 void ScalarConverter::printChar(void)
 {
-	if (_rangerChecker < CHAR_MIN || _rangerChecker >= CHAR_MAX || _type >= 0)
-		std::cout << "char: Imposible" << std::endl;
-	else if (!isprint(_char))
-		std::cout << "char: Non displayable" << std::endl;
+	std::cout << "char: ";
+	if (_int < CHAR_MIN || _int > CHAR_MAX || _isPseudoLiteral)
+		std::cout << "Impossible\n";
+	else if (isprint(_char) == false)
+		std::cout << "Non Displayable\n";
 	else
-		std::cout << "char: " << _char << std::endl;
+		std::cout << _char << "\n";
 }
 
-void ScalarConverter::printFloat(void)
+void ScalarConverter::printInt(void)
 {
-	std::cout << "Float: ";
-	if (_type == 0 || _type == 1)
-		std::cout << "-inff" << std::endl;
-	else if (_type == 2 || _type == 3)
-		std::cout << "+inff" << std::endl;
-	else if (_type > 3)
-		std::cout << "nanf" << std::endl;
-	else if (_type >= 0)
-		std::cout << "Imposible" << std::endl;
+	std::cout << "int: ";
+	if (_int < INT_MIN || _int > INT_MAX || _isPseudoLiteral)
+		std::cout << "Impossible\n";
 	else
-	{
-		std::cout << std::fixed << std::setprecision(1);
-		std::cout << _float << "f" << std::endl;
-	}
+		std::cout << _int << "\n";
 }
 
-void ScalarConverter::printDouble(void)
+void ScalarConverter::printFloat(const std::string &literal)
 {
-	std::cout << "Double: ";
-	if (_type == 0 || _type == 1)
-		std::cout << "-inf" << std::endl;
-	else if (_type == 2 || _type == 3)
-		std::cout << "+inf" << std::endl;
-	else if (_type > 3)
-		std::cout << "nan" << std::endl;
+	std::cout << "float: ";
+	if (_isPseudoLiteral)
+		std::cout << literal << "f\n";
 	else
-	{
-		std::cout << std::fixed << std::setprecision(1);
-		std::cout << _double << std::endl;
-	}
-}
+		std::cout << std::fixed << std::setprecision(1) << _float << "f\n";
+};
 
-void ScalarConverter::printValues(void)
+void ScalarConverter::printDouble(const std::string &literal)
 {
-	printChar();
-	printInt();
-	printFloat();
-	printDouble();
-}
-
-void ScalarConverter::convert(std::string const str)
-{
-	getType(str);
-}
-
-/*
-** --------------------------------- SETTERS ----------------------------------
-*/
-
-void ScalarConverter::setInt(std::string s)
-{
-	_rangerChecker = strtof(s.c_str(), NULL);
-	_int = atoi(s.c_str());
-	_char = static_cast<char>(_int);
-	_float = static_cast<float>(_int);
-	_double = static_cast<double>(_int);
-}
-
-void ScalarConverter::setChar(std::string s)
-{
-	_rangerChecker = strtof(s.c_str(), NULL);
-	_int = static_cast<int>(s[0]);
-	_char = static_cast<char>(_int);
-	_float = static_cast<float>(_int);
-	_double = static_cast<double>(_int);
-}
-
-void ScalarConverter::setDouble(std::string s)
-{
-	_rangerChecker = strtof(s.c_str(), NULL);
-	_double = strtod(s.c_str(), NULL);
-	_char = static_cast<char>(_double);
-	_int = static_cast<float>(_double);
-	_float = static_cast<double>(_double);
-}
-
-void ScalarConverter::setFloat(std::string s)
-{
-	_rangerChecker = strtof(s.c_str(), NULL);
-	_float = strtof(s.c_str(), NULL);
-	_char = static_cast<char>(_float);
-	_int = static_cast<float>(_float);
-	_double = static_cast<double>(_float);
+	std::cout << "double: ";
+	if (_isPseudoLiteral)
+		std::cout << literal << "\n";
+	else
+		std::cout << std::fixed << std::setprecision(1) << _double << "\n";
 }
 
 /* ************************************************************************** */
