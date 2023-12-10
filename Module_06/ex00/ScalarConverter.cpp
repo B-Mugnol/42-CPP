@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:02:43 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/12/10 16:22:07 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:27:48 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,7 +227,7 @@ void ScalarConverter::printChar(void)
 	std::cout << "char: ";
 	if (_int < CHAR_MIN || _int > CHAR_MAX || _isPseudoLiteral)
 		std::cout << "Impossible\n";
-	else if (isprint(_char) == false)
+	else if (std::isprint(_char) == false)
 		std::cout << "Non Displayable\n";
 	else
 		std::cout << _char << "\n";
