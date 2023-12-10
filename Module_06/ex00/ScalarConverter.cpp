@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:02:43 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/12/10 16:27:48 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/10 19:15:05 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,9 @@ bool ScalarConverter::isInt(const std::string &literal)
 		if (std::isdigit(literal[i]) == false)
 			return false;
 	}
+
+	if (std::strtod(literal.c_str(), NULL) != static_cast<double>(std::atoi(literal.c_str())))
+		return false;
 	return true;
 }
 
@@ -137,6 +140,11 @@ bool ScalarConverter::isDouble(const std::string &literal)
 				return false;
 		}
 	}
+
+	if (
+		!hasDot &&
+		std::strtod(literal.c_str(), NULL) != static_cast<double>(std::atoi(literal.c_str())))
+		return true;
 	return hasDot;
 }
 
@@ -175,8 +183,7 @@ bool ScalarConverter::isPseudoLiteralF(const std::string &literal)
 {
 	for (int i = 0; i < 3; i++)
 	{
-		// if (literal == _pseudoLiteralsF[i])
-		if (_pseudoLiteralsF[i].compare(literal) == 0)
+		if (literal == _pseudoLiteralsF[i])
 			return true;
 	}
 	return false;
@@ -225,7 +232,7 @@ void ScalarConverter::printValues(const std::string &literal)
 void ScalarConverter::printChar(void)
 {
 	std::cout << "char: ";
-	if (_int < CHAR_MIN || _int > CHAR_MAX || _isPseudoLiteral)
+	if (_double < CHAR_MIN || _double > CHAR_MAX || _isPseudoLiteral)
 		std::cout << "Impossible\n";
 	else if (std::isprint(_char) == false)
 		std::cout << "Non Displayable\n";
@@ -236,7 +243,7 @@ void ScalarConverter::printChar(void)
 void ScalarConverter::printInt(void)
 {
 	std::cout << "int: ";
-	if (_int < INT_MIN || _int > INT_MAX || _isPseudoLiteral)
+	if (_double < INT_MIN || _double > INT_MAX || _isPseudoLiteral)
 		std::cout << "Impossible\n";
 	else
 		std::cout << _int << "\n";
