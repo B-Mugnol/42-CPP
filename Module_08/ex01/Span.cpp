@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:45:49 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/12/10 21:37:27 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/10 22:58:28 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,17 @@ void Span::addNumber(int n)
 		throw Span::SpanFullException();
 }
 
+void Span::addNumbers(std::vector<int> numbers)
+{
+	if (numbers.size() + this->_data.size() > this->_maxSize)
+		throw Span::SpanFullException();
+
+	for (size_t i = 0; i < numbers.size(); i++)
+	{
+		this->_data.push_back(numbers[i]);
+	}
+}
+
 int Span::longestSpan(void) const
 {
 	if (this->_data.size() < 2)
@@ -84,13 +95,13 @@ int Span::shortestSpan(void) const
 	std::vector<int> copy = _data;
 	std::sort(copy.begin(), copy.end());
 
-	int shortest_span = std::abs(copy.at(1) - copy.at(0));
+	int shortestSpan = std::abs(copy[1] - copy[0]);
 	for (size_t i = 1; i < copy.size() - 1; i++)
 	{
-		if (std::abs(copy.at(i + 1) - copy.at(i)) < shortest_span)
-			shortest_span = std::abs(copy.at(i + 1) - copy.at(i));
+		if (std::abs(copy[i + 1] - copy[i]) < shortestSpan)
+			shortestSpan = std::abs(copy[i + 1] - copy[i]);
 	}
-	return shortest_span;
+	return shortestSpan;
 }
 
 void Span::fillWithRandom(void)

@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 19:45:46 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/12/10 21:43:12 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/10 22:45:19 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ public:
 	~Span(void);
 
 	void addNumber(int n);
+	void addNumbers(std::vector<int> numbers);
+
 	int longestSpan(void) const;
 	int shortestSpan(void) const;
 	void fillWithRandom(void);
@@ -51,4 +53,4 @@ private:
 	};
 };
 
-#endif /* ************************************************************ SPAN_H */
+#endif
