@@ -6,7 +6,7 @@
 /*   By: bmugnol- <bmugnol-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 17:13:16 by bmugnol-          #+#    #+#             */
-/*   Updated: 2023/10/24 18:27:11 by bmugnol-         ###   ########.fr       */
+/*   Updated: 2023/12/10 22:26:35 by bmugnol-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-// template <typename T>
 template <typename T>
 Array<T>::Array(void) : _size(0), _element(NULL)
 {
